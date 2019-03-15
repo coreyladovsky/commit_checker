@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { USER } from "./config/config";
 import DateDisplay from "./DateDisplay";
 import "./App.css";
+
 
 class App extends Component {
   state = {
@@ -89,10 +89,10 @@ class App extends Component {
     return axios({
       method: "get",
       url: "https://api.github.com/repos/" + userRepo + "/commits",
-      auth: {
-        username: USER.NAME,
-        password: USER.PASSWORD
-      }
+      // auth: {
+      //   username: USERNAME,
+      //   password: PASSWORD
+      // }
     });
   };
 
@@ -105,7 +105,7 @@ class App extends Component {
       if (
         this.state.studentLookup[person[0].comments_url.slice(29).split("/")[0]]
           .toLowerCase()
-          .includes(this.state.search)
+          .includes(this.state.search.toLowerCase())
       ) {
         return (
           <div className="personObj" key={person[0].comments_url.slice(29).split("/")[0]}>
