@@ -4,7 +4,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 require("dotenv").config();
-let { USERNAME, PASSWORD, NODE_ENV } = process.env;
+var { USERNAME, PASSWORD, NODE_ENV } = process.env;
 
 const axios = require("axios");
 
@@ -14,23 +14,18 @@ var app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
-app.use(logger("dev"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+// app.use(logger("dev"));
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
+// app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 
 app.get("/:userName/:userRepo", (req, res, next) => {
   let url = "https://api.github.com/repos/" + req.params.userName + "/" + req.params.userRepo + "/commits"
-  console.log("request: ", url  );
+
   axios({
     method: "get",
     url: url,
-    // withCredentials: true,
-  // headers: {
-  //   'Content-Type': 'application/json',
-  //   'x-access-token': state.tokenid
-  // }
     auth: {
       username: USERNAME,
       password: PASSWORD
