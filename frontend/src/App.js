@@ -86,14 +86,7 @@ class App extends Component {
   }
 
   makeRequest = userRepo => {
-    return axios({
-      method: "get",
-      url: "https://api.github.com/repos/" + userRepo + "/commits",
-      // auth: {
-      //   username: USERNAME,
-      //   password: PASSWORD
-      // }
-    });
+    return axios.get("/" + userRepo);
   };
 
   updateSearch = e => {
