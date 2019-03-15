@@ -18,7 +18,7 @@ app.set("view engine", "jade");
 // app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "../frontend/build")));
+app.use(express.static(path.join(__dirname, "/../frontend/build")));
 
 app.get("/:userName/:userRepo", (req, res, next) => {
   let url = "https://api.github.com/repos/" + req.params.userName + "/" + req.params.userRepo + "/commits"
