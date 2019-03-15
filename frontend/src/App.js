@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import DateDisplay from "./DateDisplay";
 import "./App.css";
-import { USERNAME, PASSWORD} from './config/config'
+// import { USERNAME, PASSWORD} from './config/config'
 
 
 class App extends Component {
