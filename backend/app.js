@@ -39,7 +39,7 @@ app.get("/:userName/:userRepo", (req, res, next) => {
 });
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "../frontend/build/index.html"));
+  res.sendFile(path.join(__dirname + "/../frontend/build/index.html"));
 });
 
 // catch 404 and forward to error handler
