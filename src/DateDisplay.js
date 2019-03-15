@@ -12,7 +12,7 @@ class DateDisplay extends React.Component {
     let display = Object.keys(dates).map(date => {
 
       return(
-        <li>
+        <li key={date}>
           {date}: {dates[date]}
         </li>
       )
