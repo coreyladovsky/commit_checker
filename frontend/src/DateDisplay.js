@@ -1,6 +1,9 @@
 import React from 'react'
 
 class DateDisplay extends React.Component {
+  state = {
+    months: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  }
   render () {
     let dates = {
 
