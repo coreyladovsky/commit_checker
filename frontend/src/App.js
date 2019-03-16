@@ -3,7 +3,6 @@ import axios from "axios";
 import DateDisplay from "./DateDisplay";
 import "./App.css";
 
-
 class App extends Component {
   state = {
     allStudents: {
@@ -24,7 +23,7 @@ class App extends Component {
       // "Kelly Liang": "kellyliang7/Web_Final_Practical",
       // "Nicolle Loyaza": "NikkiVee/EarWorm",
       "Jean Max Mezalon": "jmezalon/Max_Mezalon_Final_Practical",
-      "Mateo Navarrete": "mateo-navarrete/finally",
+      "Mateo Navarrete": "mateo-navarrete/finally"
       // "Jacky Ong": "JJGITTY2018/Web_Final_Private",
       // "Deyvi Ortiz": "SurgamSurgam/web_final_practical",
       // "Tyson Pan": "ThaiSonP/finalAssesment",
@@ -55,7 +54,7 @@ class App extends Component {
       // kellyliang7: "Kelly Liang",
       // NikkiVee: "Nicolle Loyaza",
       jmezalon: "Jean Max Mezalon",
-      "mateo-navarrete": "Mateo Navarrete",
+      "mateo-navarrete": "Mateo Navarrete"
       // JJGITTY2018: "Jacky Ong",
       // SurgamSurgam: "Deyvi Ortiz",
       // ThaiSonP: "Tyson Pan",
@@ -96,39 +95,94 @@ class App extends Component {
     this.setState({ [e.target.id]: e.target.value });
   };
 
-
   render() {
-    let displayPerson = this.state.allCommits.sort((a, b) => {
-      if(this.state.sort === "total-dec") {
-        return b.length - a.length
-      } else if (this.state.sort === "total-asc") {
-        return a.length - b.length
-      }
-    }).map(person => {
-      if (
-        this.state.studentLookup[person[0].comments_url.slice(29).split("/")[0]]
-          .toLowerCase()
-          .includes(this.state.search.toLowerCase())
-      ) {
-        return (
-          <div className="personObj" key={person[0].comments_url.slice(29).split("/")[0]}>
-            <div className="personName">
-              Name:{"  "}
-              {
-                this.state.studentLookup[
-                  person[0].comments_url.slice(29).split("/")[0]
-                ]
-              }
+    let months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ];
+    let displayPerson = this.state.allCommits
+      .sort((a, b) => {
+        debugger;
+        if (this.state.sort === "total-dec") {
+          return b.length - a.length;
+        } else if (this.state.sort === "total-asc") {
+          return a.length - b.length;
+        } else {
+          let aDates = {
+            [months[new Date().getMonth()] + " " + new Date().getDate()]: 0
+          };
+          let bDates = {
+            [months[new Date().getMonth()] + " " + new Date().getDate()]: 0
+          };
+
+          a.forEach(array => {
+            let [month, day] = array.commit.author.date
+              .slice(5, 10)
+              .split("-")
+              .map(el => Number(el));
+            let date = months[month - 1] + " " + day;
+            aDates[date] ? aDates[date]++ : (aDates[date] = 1);
+          });
+
+          b.forEach(array => {
+            let [month, day] = array.commit.author.date
+              .slice(5, 10)
+              .split("-")
+              .map(el => Number(el));
+            let date = months[month - 1] + " " + day;
+            bDates[date] ? bDates[date]++ : (bDates[date] = 1);
+          });
+
+          let today =
+            months[new Date().getMonth()] + " " + new Date().getDate();
+          if (this.state.sort === "today-dec") {
+            return bDates[today] - aDates[today];
+          } else if (this.state.sort === "today-asc") {
+            return aDates[today] - bDates[today];
+          }
+        }
+      })
+      .map(person => {
+        if (
+          this.state.studentLookup[
+            person[0].comments_url.slice(29).split("/")[0]
+          ]
+            .toLowerCase()
+            .includes(this.state.search.toLowerCase())
+        ) {
+          return (
+            <div
+              className="personObj"
+              key={person[0].comments_url.slice(29).split("/")[0]}
+            >
+              <div className="personName">
+                Name:{"  "}
+                {
+                  this.state.studentLookup[
+                    person[0].comments_url.slice(29).split("/")[0]
+                  ]
+                }
+              </div>
+              <DateDisplay array={person} />
+              <br />
+              Total Project Commits: {person.length}
             </div>
-            <DateDisplay array={person} />
-            <br />
-            Total Project Commits: {person.length}
-          </div>
-        );
-      } else {
-        return null;
-      }
-    })
+          );
+        } else {
+          return null;
+        }
+      });
+
     return (
       <div className="App">
         <input
@@ -138,10 +192,12 @@ class App extends Component {
           placeholder="Search"
           id="search"
         />
-      <select onChange={this.handleChange.bind(this)} id="sort">
-        <option value="total-dec">By Most Total Commits</option>
-        <option value="total-asc">By Least Total Commits</option>
-      </select>
+        <select onChange={this.handleChange.bind(this)} id="sort">
+          <option value="total-dec">By Most Total Commits</option>
+          <option value="total-asc">By Least Total Commits</option>
+          <option value="today-dec">By Most Commits Today</option>
+          <option value="today-asc">By Least Commits Todayå</option>
+        </select>
 
         {displayPerson}
       </div>
