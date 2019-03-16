@@ -7,7 +7,7 @@ import "./App.css";
 class App extends Component {
   state = {
     allStudents: {
-      "Isa Alvarado": "isaink/Web_Final_Practical",
+      // "Isa Alvarado": "isaink/Web_Final_Practical",
       // "Jonathan Andrade": "xpectro93/webfinal",
       // "Erick Arellano": "earellano1719/technicalFinal",
       // "Jonelle Bain": "jbain424/WebFinal",
@@ -23,7 +23,7 @@ class App extends Component {
       "Andrew Kil": "Andrew-Kil/Web_Final_Practical",
       // "Kelly Liang": "kellyliang7/Web_Final_Practical",
       // "Nicolle Loyaza": "NikkiVee/EarWorm",
-      // "Jean Max Mezalon": "jmezalon/Max_Mezalon_Final_Practical",
+      "Jean Max Mezalon": "jmezalon/Max_Mezalon_Final_Practical",
       "Mateo Navarrete": "mateo-navarrete/finally",
       // "Jacky Ong": "JJGITTY2018/Web_Final_Private",
       // "Deyvi Ortiz": "SurgamSurgam/web_final_practical",
@@ -39,7 +39,7 @@ class App extends Component {
       // "Leo Lu": "Godsby/Web_Final_Exam"
     },
     studentLookup: {
-      isaink: "Isa Alvarado",
+      // isaink: "Isa Alvarado",
       // xpectro93: "Jonathan Andrade",
       // earellano1719: "Erick Arellano",
       // jbain424: "Jonelle Bain",
@@ -54,7 +54,7 @@ class App extends Component {
       "Andrew-Kil": "Andrew Kil",
       // kellyliang7: "Kelly Liang",
       // NikkiVee: "Nicolle Loyaza",
-      // jmezalon: "Jean Max Mezalon",
+      jmezalon: "Jean Max Mezalon",
       "mateo-navarrete": "Mateo Navarrete",
       // JJGITTY2018: "Jacky Ong",
       // SurgamSurgam: "Deyvi Ortiz",

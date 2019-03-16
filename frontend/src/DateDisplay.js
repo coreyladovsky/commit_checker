@@ -6,10 +6,11 @@ class DateDisplay extends React.Component {
   }
   render () {
     let dates = {
-
+      [this.state.months[new Date().getMonth()]+ " " + new Date().getDate()]: 0,
     }
     this.props.array.forEach(array => {
-      let date = array.commit.author.date.slice(5, 10)
+      let [month, day] = array.commit.author.date.slice(5, 10).split("-").map(el => Number(el))
+      let date = this.state.months[month - 1] + " " + day
       dates[date] ? dates[date]++ : dates[date] = 1;
     })
     let display = Object.keys(dates).map(date => {
@@ -22,7 +23,7 @@ class DateDisplay extends React.Component {
     })
     return(
       <div>
-        Todays Commits: {dates["0" + (new Date().getMonth() + 1 )+ "-" + new Date().getDate()]}
+        Todays Commits: {dates[  [this.state.months[new Date().getMonth()]+ " " + new Date().getDate()]]}
         <ul>
           {display}
         </ul>
