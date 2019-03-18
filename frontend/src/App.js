@@ -35,7 +35,9 @@ class App extends Component {
       "Carina Taveras": "tCarina/earwormapp",
       "Michell Tejada": "mitejada/Web_Final_Practical",
       "Nielene Thomas": "Nielene/Unit_5_Final",
-      "Leo Lu": "Godsby/Web_Final_Exam"
+      "Leo Lu": "Godsby/Web_Final_Exam",
+      "Christian Anselm": "ChristianAnselm/earworm",
+      "Abid Hussain": "Ne0phite/Web_Final__Practical"
     },
     studentLookup: {
       isaink: "Isa Alvarado",
@@ -66,7 +68,9 @@ class App extends Component {
       tCarina: "Carina Taveras",
       mitejada: "Michell Tejada",
       Nielene: "Nielene Thomas",
-      Godsby: "Leo Lu"
+      Godsby: "Leo Lu",
+      "ChristianAnselm": "Christian Anselm",
+      "Ne0phite" :"Abid Hussain"
     },
     allCommits: [],
     search: "",
