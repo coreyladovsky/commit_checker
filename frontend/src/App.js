@@ -131,7 +131,6 @@ class App extends Component {
 
     let displayPerson = this.state.allCommits
       .sort((a, b) => {
-        debugger;
         if (this.state.sort === "total-dec") {
           return b.length - a.length;
         } else if (this.state.sort === "total-asc") {
@@ -160,12 +159,16 @@ class App extends Component {
               key={person[0].comments_url.slice(29).split("/")[0]}
             >
               <div className="personName">
+                <a href={"https://github.com/" + this.state.allStudents[this.state.studentLookup[
+                  person[0].comments_url.slice(29).split("/")[0]
+                ]] } target="_blank">
                 Name:{"  "}
                 {
                   this.state.studentLookup[
                     person[0].comments_url.slice(29).split("/")[0]
                   ]
                 }
+              </a>
               </div>
               <DateDisplay array={person} />
               <br />
